@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://localhost:3000/how-was-your-day.html -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>How was your day?</title>
+  <link href="./How was your day__files/css2" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #050e20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* Fixed 400x645 container — exact target ratio */
+    .container {
+      width: 400px;
+      height: 645px;
+      position: relative;
+      flex-shrink: 0;
+      background: url('../src/app/garden/social-bg.jpg') center top / cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Skip past the painted title (top 22% of container = 142px) */
+    .spacer {
+      height: 182px;
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    /* Board — holds 3 cards, fills remaining height minus bottom bar */
+    .board {
+      width: 356px;
+      flex: 1;
+      min-height: 0;
+      background: rgba(38, 20, 6, 0.80);
+      border-radius: 14px;
+      border: 2px solid rgba(110, 70, 20, 0.8);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), inset 0 1px 4px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      padding: 7px;
+      gap: 6px;
+      overflow: hidden;
+    }
+
+    /* ── Each card ── */
+    .card {
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Pushpin */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      z-index: 5;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Personal */
+    .card-p {
+      background: linear-gradient(175deg, #d9a8a0, #f0cfc4);
+    }
+
+    .card-p::before {
+      background: radial-gradient(circle at 35% 35%, #f07070, #b02020);
+    }
+
+    .card-p .hdr {
+      background: rgba(150, 50, 40, 0.20);
+    }
+
+    .card-p .hdr h2 {
+      color: #7a1520;
+    }
+
+    .card-p input[type=checkbox] {
+      border-color: #922030 !important;
+      color: #922030 !important;
+    }
+
+    .card-p input[type=text] {
+      border-bottom-color: rgba(140, 40, 40, 0.38) !important;
+      color: #5a1818;
+    }
+
+    .card-p input::placeholder {
+      color: rgba(150, 70, 70, 0.45);
+    }
+
+    /* Professional */
+    .card-pro {
+      background: linear-gradient(175deg, #b4b0e0, #d8d4f8);
+    }
+
+    .card-pro::before {
+      background: radial-gradient(circle at 35% 35%, #6878e8, #2030b0);
+    }
+
+    .card-pro .hdr {
+      background: rgba(50, 40, 160, 0.18);
+    }
+
+    .card-pro .hdr h2 {
+      color: #28207a;
+    }
+
+    .card-pro input[type=checkbox] {
+      border-color: #383898 !important;
+      color: #383898 !important;
+    }
+
+    .card-pro input[type=text] {
+      border-bottom-color: rgba(60, 50, 150, 0.38) !important;
+      color: #181060;
+    }
+
+    .card-pro input::placeholder {
+      color: rgba(80, 70, 160, 0.45);
+    }
+
+    /* Social */
+    .card-s {
+      background: linear-gradient(175deg, #a8c890, #cce8b0);
+    }
+
+    .card-s::before {
+      background: radial-gradient(circle at 35% 35%, #60c060, #1a7820);
+    }
+
+    .card-s .hdr {
+      background: rgba(30, 90, 20, 0.18);
+    }
+
+    .card-s .hdr h2 {
+      color: #1a4e10;
+    }
+
+    .card-s input[type=checkbox] {
+      border-color: #287028 !important;
+      color: #287028 !important;
+    }
+
+    .card-s input[type=text] {
+      border-bottom-color: rgba(40, 100, 30, 0.38) !important;
+      color: #183a10;
+    }
+
+    .card-s input::placeholder {
+      color: rgba(50, 100, 40, 0.45);
+    }
+
+    /* Card header */
+    .hdr {
+      flex-shrink: 0;
+      height: 28%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .hdr .ico {
+      font-size: 14px;
+    }
+
+    .hdr h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 15px;
+    }
+
+    /* Rows */
+    .rows {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding: 3px 10px 5px;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    input[type=checkbox] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 13px;
+      height: 13px;
+      border: 2px solid;
+      border-radius: 3px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      transition: background .15s, transform .1s;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    input[type=checkbox]:checked {
+      background: currentColor !important;
+      transform: scale(1.1);
+    }
+
+    input[type=checkbox]:checked::after {
+      content: '✓';
+      position: absolute;
+      color: #fff;
+      font-size: 8px;
+      font-weight: 900;
+      top: -1px;
+      left: 1px;
+    }
+
+    input[type=text] {
+      flex: 1;
+      min-width: 0;
+      background: transparent;
+      border: none;
+      border-bottom: 1.5px dashed;
+      outline: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 0 2px 1px;
+    }
+
+    /* ── Bottom bar (fixed height 110px) ── */
+    .bottom {
+      width: 356px;
+      flex-shrink: 0;
+      height: 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 5px 0 5px;
+      background: rgba(15, 7, 1, 0.60);
+      border-radius: 0 0 18px 18px;
+    }
+
+    .info-bar {
+      flex: 1;
+      background: rgba(12, 6, 1, 0.75);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px;
+      border: 1.5px solid rgba(100, 80, 20, 0.4);
+    }
+
+    .info-bar .star {
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .info-bar p {
+      font-size: 11px;
+      font-weight: 800;
+      color: #f0e8c0;
+      line-height: 1.4;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      height: 46px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      flex: 1;
+      height: 100%;
+      border-radius: 50px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      border: none;
+      transition: transform .12s;
+    }
+
+    .btn:active {
+      transform: scale(.94);
+    }
+
+    .btn-skip {
+      background: linear-gradient(135deg, #6a3ab8, #4a2090);
+      color: #e8d8ff;
+      box-shadow: 0 3px 12px rgba(80, 30, 180, 0.45);
+      border: 2px solid rgba(140, 100, 220, 0.4) !important;
+    }
+
+    .btn-done {
+      background: linear-gradient(135deg, #f8d848, #d49010);
+      color: #3a1800;
+      box-shadow: 0 3px 12px rgba(220, 150, 0, 0.45);
+    }
+
+    /* ── Modal ── */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .mbox {
+      background: linear-gradient(155deg, #f9f0d8, #efe5be);
+      border-radius: 22px;
+      padding: 32px 26px;
+      text-align: center;
+      border: 3px solid rgba(180, 140, 60, .5);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .6);
+      animation: pop .3s cubic-bezier(.34, 1.56, .64, 1);
+      width: 100%;
+      max-width: 280px;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(.7);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .mbox .em {
+      font-size: 44px;
+      margin-bottom: 10px;
+    }
+
+    .mbox h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 20px;
+      color: #3d1a00;
+      margin-bottom: 6px;
+    }
+
+    .mbox p {
+      font-size: 12px;
+      color: #6b4c2a;
+      font-weight: 700;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .mclose {
+      background: linear-gradient(135deg, #f8d848, #d49010);
+      color: #3a1800;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 32px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="spacer"></div>
+
+    <div class="board">
+      <!-- PERSONAL -->
+      <div class="card card-p">
+        <div class="hdr"><span class="ico">👤</span>
+          <h2>Personal</h2>
+        </div>
+        <div class="rows">
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+        </div>
+      </div>
+
+      <!-- PROFESSIONAL -->
+      <div class="card card-pro">
+        <div class="hdr"><span class="ico">💼</span>
+          <h2>Professional</h2>
+        </div>
+        <div class="rows">
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+        </div>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="card card-s">
+        <div class="hdr"><span class="ico">👥</span>
+          <h2>Social</h2>
+        </div>
+        <div class="rows">
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+          <div class="row"><input type="checkbox"><input type="text" placeholder="Write here..."></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM — info + 2 buttons -->
+    <div class="bottom">
+      <div class="info-bar">
+        <span class="star">⭐</span>
+        <p>There's no right or wrong here.<br>Just an honest reflection.</p>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-skip" onclick="handleSkip()">Skip</button>
+        <button class="btn btn-done" onclick="handleDone()">Done</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Single modal -->
+  <div class="modal" id="modal" onclick="if(event.target===this)closeM()">
+    <div class="mbox">
+      <div class="em" id="em">🌟</div>
+      <h2 id="mt">Great!</h2>
+      <p id="mp">Your reflection has been saved.</p>
+      <button class="mclose" onclick="closeM()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    function showM(e, t, m) {
+      document.getElementById('em').textContent = e;
+      document.getElementById('mt').textContent = t;
+      document.getElementById('mp').textContent = m;
+      document.getElementById('modal').classList.add('show');
+    }
+    function closeM() { document.getElementById('modal').classList.remove('show'); }
+    function handleDone() {
+      const n = document.querySelectorAll('input[type=checkbox]:checked').length;
+      if (!n) showM('🌙', 'Reflection saved!', 'Even pausing to think counts. See you tomorrow!');
+      else if (n <= 7) showM('🌟', 'Well done!', n + ' item' + (n > 1 ? 's' : '') + ' checked today. Keep it up! 🐾');
+      else showM('✨', 'Amazing!', 'You crushed ' + n + ' things — the puppy is so proud! 🐕');
+    }
+    function handleSkip() {
+      showM('🐾', 'No worries!', "Come back whenever you're ready. The puppy will be waiting!");
+    }
+  </script>
+
+</body>
+
+</html>
