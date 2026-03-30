@@ -1,0 +1,35 @@
+:root {
+    /* Color Palette */
+    --color-sky-blue: #ADE3F5;
+    --color-soft-green: #B5D99C;
+    --color-warm-cream: #FFF8EC;
+    --color-golden-yellow: #F9C74F;
+    --color-golden-yellow-hover: #e0b03d;
+    --color-earthy-brown: #7D4E2D;
+    
+    /* Additional Tints */
+    --color-navy: #1C3B5E;
+    --color-orange: #F3722C;
+    --color-orange-dark: #D45B1C;
+    
+    /* Goal Card Colors */
+    --color-card-red: #F94144;
+    --color-card-green: #43AA8B;
+    --color-card-yellow: #F9C74F;
+    --color-card-blue: #277DA1;
+    --color-card-orange: #F3722C;
+    --color-card-purple: #90BE6D; /* A soft color for hobbies */
+    
+    /* Typography */
+    --font-heading: 'Baloo 2', cursive, sans-serif;
+    --font-body: 'Nunito', sans-serif;
+    
+    /* Layout Constants */
+    --card-max-width-tablet: 560px;
+    --card-max-width-desktop: 480px;
+    --sidebar-width: 280px;
+    
+    /* Transitions */
+    --transition-speed: 0.4s;
+    --transition-easing: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
