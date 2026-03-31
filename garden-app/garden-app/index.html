@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden 🌿 - Your daily check-in</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+</head>
+
+<body class="hide-sidebars">
+    <!-- Background Elements -->
+    <div class="bg-sky"></div>
+    <div class="bg-stars night-element"></div>
+    <div class="bg-moon night-element"></div>
+    <div class="bg-lights night-element">
+        <div class="light-wire"></div>
+        <div class="light-bulb bulb-1"></div>
+        <div class="light-bulb bulb-2"></div>
+        <div class="light-bulb bulb-3"></div>
+        <div class="light-bulb bulb-4"></div>
+    </div>
+
+    <div class="bg-birds">
+        <div class="bird bird-1"></div>
+        <div class="bird bird-2"></div>
+        <div class="bird bird-3"></div>
+    </div>
+    <div class="bg-clouds">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
+    </div>
+    <div class="bg-bushes">
+        <div class="bush bush-1"></div>
+        <div class="bush bush-2"></div>
+        <div class="bush bush-3"></div>
+        <div class="bush bush-4"></div>
+        <div class="bush bush-5"></div>
+    </div>
+    <div class="bg-fence"></div>
+    <div class="bg-hills"></div>
+    <div class="bg-flowers">
+        <!-- Realistic Flowers scattered on grass -->
+        <div class="flower-real f-tulip fl-1"></div>
+        <div class="flower-real f-daisy fl-2"></div>
+        <div class="flower-real f-bluebell fl-3"></div>
+        <div class="flower-real f-tulip fl-4"></div>
+        <div class="flower-real f-daisy fl-5"></div>
+        <div class="flower-real f-bluebell fl-6"></div>
+        <div class="flower-real f-tulip fl-7"></div>
+        <div class="flower-real f-daisy fl-8"></div>
+        <div class="flower-real f-bluebell fl-9"></div>
+        <div class="flower-real f-tulip fl-10"></div>
+        <div class="flower-real f-daisy fl-11"></div>
+        <div class="flower-real f-bluebell fl-12"></div>
+        <div class="flower-real f-tulip fl-13"></div>
+        <div class="flower-real f-daisy fl-14"></div>
+        <div class="flower-real f-bluebell fl-15"></div>
+        <div class="flower-real f-tulip fl-16"></div>
+        <div class="flower-real f-daisy fl-17"></div>
+        <div class="flower-real f-bluebell fl-18"></div>
+
+        <!-- Dense Fill Flowers -->
+        <div class="flower-real f-daisy fl-19"></div>
+        <div class="flower-real f-bluebell fl-20"></div>
+        <div class="flower-real f-tulip fl-21"></div>
+        <div class="flower-real f-daisy fl-22"></div>
+        <div class="flower-real f-tulip fl-23"></div>
+        <div class="flower-real f-bluebell fl-24"></div>
+        <div class="flower-real f-daisy fl-25"></div>
+        <div class="flower-real f-tulip fl-26"></div>
+        <div class="flower-real f-bluebell fl-27"></div>
+        <div class="flower-real f-daisy fl-28"></div>
+        <div class="flower-real f-tulip fl-29"></div>
+        <div class="flower-real f-bluebell fl-30"></div>
+        <div class="flower-real f-daisy fl-31"></div>
+        <div class="flower-real f-tulip fl-32"></div>
+        <div class="flower-real f-bluebell fl-33"></div>
+        <div class="flower-real f-daisy fl-34"></div>
+        <div class="flower-real f-tulip fl-35"></div>
+        <div class="flower-real f-bluebell fl-36"></div>
+        <div class="flower-real f-daisy fl-37"></div>
+        <div class="flower-real f-tulip fl-38"></div>
+        <div class="flower-real f-bluebell fl-39"></div>
+        <div class="flower-real f-daisy fl-40"></div>
+        <div class="flower-real f-tulip fl-41"></div>
+        <div class="flower-real f-bluebell fl-42"></div>
+        <div class="flower-real f-daisy fl-43"></div>
+        <div class="flower-real f-tulip fl-44"></div>
+        <div class="flower-real f-bluebell fl-45"></div>
+        <div class="flower-real f-daisy fl-46"></div>
+        <div class="flower-real f-tulip fl-47"></div>
+        <div class="flower-real f-bluebell fl-48"></div>
+        <div class="flower-real f-daisy fl-49"></div>
+        <div class="flower-real f-tulip fl-50"></div>
+    </div>
+    <div class="bg-confetti" id="confetti-container"></div>
+    <div class="bg-ground"></div>
+    <div class="bg-lantern night-element"></div>
+
+    <div id="app-container" class="app-container">
+
+        <!-- Left Sidebar (Desktop Only) -->
+        <aside id="sidebar-left" class="sidebar sidebar-left">
+            <div class="sidebar-content">
+                <div class="mascot-container">
+                    <!-- Mascot will be injected via JS or CSS -->
+                    <div id="puppy-mascot-left" class="puppy-mascot"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Card -->
+        <main id="center-card" class="center-card">
+
+            <!-- Progress Dots Container -->
+            <div id="progress-container" class="progress-container hidden">
+                <div class="dot" data-step="1"></div>
+                <div class="dot" data-step="2"></div>
+                <div class="dot" data-step="3"></div>
+                <div class="dot" data-step="4"></div>
+                <div class="dot" data-step="5"></div>
+            </div>
+
+            <!-- Screen 0: Landing -->
+            <section id="screen-0" class="screen active">
+                <div class="landing-content">
+                    <h2 class="title-large">Welcome to the Garden</h2>
+                    <p class="body-text">A space you can visit every morning and night.</p>
+                    <p class="body-text">Take a few minutes to pause, reflect, and understand how you're feeling.</p>
+                    <p class="body-text">Build small daily habits. Notice your thoughts. Come back to yourself.</p>
+                </div>
+                <div class="screen-footer bottom-sticky">
+                    <button class="btn btn-golden btn-full" onclick="window.app.nextScreen()">Enter the Garden
+                        🌱</button>
+                    <p class="footer-muted">Your daily check-in starts here.</p>
+                </div>
+            </section>
+
+            <!-- Screen 1: Morning Meditation -->
+            <section id="screen-1" class="screen">
+                <button class="back-btn" onclick="window.app.prevScreen()">&#8592;</button>
+                <header class="screen-header">
+                    <h2 class="title-navy">Morning Meditation</h2>
+                    <div class="icon-moon"></div>
+                </header>
+                <div class="meditation-container">
+                    <div class="video-window">
+                        <!-- Boy meditating SVG -->
+                        <div id="meditation-svg" class="meditation-art"></div>
+                        <button id="play-btn" class="play-btn">
+                            <div class="play-icon"></div>
+                        </button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="meditation-progress"></div>
+                    </div>
+                </div>
+                <div class="screen-footer bottom-sticky side-by-side">
+                    <button class="btn btn-outline" onclick="window.app.playMeditation()">Repeat</button>
+                    <button class="btn btn-golden btn-flex" onclick="window.app.nextScreen()">Done ✓</button>
+                </div>
+                <div class="mobile-mascot" id="puppy-mascot-mobile"></div>
+            </section>
+
+            <!-- Screen 2: Gratitude -->
+            <section id="screen-2" class="screen">
+                <button class="back-btn" onclick="window.app.prevScreen()">&#8592;</button>
+                <header class="screen-header">
+                    <div class="icon-sun"></div>
+                    <h2 class="title-brown">Thank You</h2>
+                    <div class="icon-moon"></div>
+                </header>
+                <div class="subtitle-card cream">
+                    <p>Write the names of three people you want to say thank you</p>
+                </div>
+                <div class="input-container">
+                    <input type="text" class="sticky-input" id="gratitude-input-1" placeholder="Name 1"
+                        onchange="window.app.saveGratitude()">
+                    <input type="text" class="sticky-input" id="gratitude-input-2" placeholder="Name 2"
+                        onchange="window.app.saveGratitude()">
+                    <input type="text" class="sticky-input" id="gratitude-input-3" placeholder="Name 3"
+                        onchange="window.app.saveGratitude()">
+                </div>
+
+                <div class="screen-footer bottom-sticky side-by-side">
+                    <button class="btn btn-outline" onclick="window.app.nextScreen()">Skip</button>
+                    <button class="btn btn-golden btn-flex" onclick="window.app.nextScreen()">Done</button>
+                </div>
+            </section>
+
+            <!-- Screen: Evening Reflection (Night Alternative for Screen 3 & 4) -->
+            <section id="screen-evening" class="screen" style="display: none;">
+                <button class="back-btn" style="color: white; z-index: 20;"
+                    onclick="window.app.prevScreen()">&#8592;</button>
+                <div class="evening-board">
+                    <div class="board-sign">
+                        <h2>How was your day?</h2>
+                        <p>Take a moment to reflect on your day...</p>
+                    </div>
+
+                    <div class="board-grid">
+                        <!-- Note 1 -->
+                        <div class="board-note note-purple">
+                            <div class="note-pin"></div>
+                            <div class="note-title">☻ Me / Myself</div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                        </div>
+                        <!-- Note 2 -->
+                        <div class="board-note note-pink">
+                            <div class="note-pin"></div>
+                            <div class="note-title">❤ People in my life</div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                        </div>
+                        <!-- Note 3 -->
+                        <div class="board-note note-green">
+                            <div class="note-pin"></div>
+                            <div class="note-title">🌿 My well-being</div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                        </div>
+                        <!-- Note 4 -->
+                        <div class="board-note note-blue">
+                            <div class="note-pin"></div>
+                            <div class="note-title">💼 Work / Learning</div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                        </div>
+                        <!-- Note 5 -->
+                        <div class="board-note note-yellow">
+                            <div class="note-pin"></div>
+                            <div class="note-title">📖 Study</div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                        </div>
+                        <!-- Note 6 -->
+                        <div class="board-note note-orange">
+                            <div class="note-pin"></div>
+                            <div class="note-title">🎨 Hobbies & Joy</div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                            <div class="note-check-line"><input type="checkbox"><input type="text"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen-footer bottom-sticky side-by-side">
+                    <button class="btn btn-outline" style="background: white;"
+                        onclick="window.app.nextScreen(true)">Skip</button>
+                    <button class="btn btn-golden btn-flex" onclick="window.app.nextScreen(true)">Done</button>
+                </div>
+            </section>
+
+            <!-- Screen 3: Intentions -->
+            <section id="screen-3" class="screen">
+                <button class="back-btn" onclick="window.app.prevScreen()">&#8592;</button>
+                <header class="screen-header centered">
+                    <h2 class="title-orange">Intentions for the Day</h2>
+                    <div id="day-pill" class="day-pill">Day</div>
+                </header>
+                <div class="parchment-card">
+                    <div class="intention-item" onclick="window.app.toggleIntention(0)">
+                        <div class="checkbox" id="int-check-0"></div>
+                        <span id="int-text-0">Overcome challenges with positivity</span>
+                    </div>
+                    <div class="intention-item" onclick="window.app.toggleIntention(1)">
+                        <div class="checkbox" id="int-check-1"></div>
+                        <span id="int-text-1">Stay focused on my goals</span>
+                    </div>
+                    <div class="intention-item" onclick="window.app.toggleIntention(2)">
+                        <div class="checkbox" id="int-check-2"></div>
+                        <span id="int-text-2">Believe in myself and my abilities</span>
+                    </div>
+                </div>
+                <div class="screen-footer bottom-sticky">
+                    <button class="btn btn-golden btn-full" onclick="window.app.nextScreen()">Done ✓</button>
+                </div>
+            </section>
+
+            <!-- Screen 4: Daily Goals -->
+            <section id="screen-4" class="screen">
+                <button class="back-btn" onclick="window.app.prevScreen()">&#8592;</button>
+                <header class="screen-header centered">
+                    <h2 class="title-orange-dark">Daily Goals 🌿</h2>
+                    <p class="subtitle">What would you like to accomplish today?</p>
+                </header>
+                <div class="goals-grid">
+                    <!-- Goal Cards -->
+                    <div class="goal-card border-red">
+                        <div class="pin pin-red"></div>
+                        <div class="goal-category text-red">Personal</div>
+                        <div class="goal-lines">
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="personal" data-idx="0"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="personal" data-idx="1"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="personal" data-idx="2"
+                                    onchange="window.app.saveGoals()"></label>
+                        </div>
+                    </div>
+                    <div class="goal-card border-green">
+                        <div class="pin pin-green"></div>
+                        <div class="goal-category text-green">Social</div>
+                        <div class="goal-lines">
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="social" data-idx="0"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="social" data-idx="1"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="social" data-idx="2"
+                                    onchange="window.app.saveGoals()"></label>
+                        </div>
+                    </div>
+                    <div class="goal-card border-yellow">
+                        <div class="pin pin-yellow"></div>
+                        <div class="goal-category text-yellow">Wellness</div>
+                        <div class="goal-lines">
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="wellness" data-idx="0"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="wellness" data-idx="1"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="wellness" data-idx="2"
+                                    onchange="window.app.saveGoals()"></label>
+                        </div>
+                    </div>
+                    <div class="goal-card border-blue">
+                        <div class="pin pin-blue"></div>
+                        <div class="goal-category text-blue">Work / Learning</div>
+                        <div class="goal-lines">
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="work" data-idx="0"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="work" data-idx="1"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="work" data-idx="2"
+                                    onchange="window.app.saveGoals()"></label>
+                        </div>
+                    </div>
+                    <div class="goal-card border-orange">
+                        <div class="pin pin-orange"></div>
+                        <div class="goal-category text-orange">Study</div>
+                        <div class="goal-lines">
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="study" data-idx="0"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="study" data-idx="1"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="study" data-idx="2"
+                                    onchange="window.app.saveGoals()"></label>
+                        </div>
+                    </div>
+                    <div class="goal-card border-purple">
+                        <div class="pin pin-purple"></div>
+                        <div class="goal-category text-purple">Hobbies</div>
+                        <div class="goal-lines">
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="hobbies" data-idx="0"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="hobbies" data-idx="1"
+                                    onchange="window.app.saveGoals()"></label>
+                            <label><input type="checkbox" onchange="window.app.saveGoals()"><input type="text"
+                                    class="dotted-input" data-cat="hobbies" data-idx="2"
+                                    onchange="window.app.saveGoals()"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen-footer bottom-sticky">
+                    <button class="btn btn-golden btn-full" onclick="window.app.nextScreen()">Done ✓</button>
+                </div>
+            </section>
+
+            <!-- Screen 5: Take What You Need -->
+            <section id="screen-5" class="screen">
+                <button class="back-btn" onclick="window.app.prevScreen()">&#8592;</button>
+                <header class="screen-header centered">
+                    <h2 class="title-brown">Take What You Need 🫶</h2>
+                    <p class="subtitle">Pick what feels right for today</p>
+                </header>
+                <div class="cups-grid">
+                    <div class="cup-item" onclick="window.app.toggleCup(1)">
+                        <div class="cup-art" id="cup-1"></div>
+                        <p class="affirmation">Better days are coming!</p>
+                        <div class="cup-check" id="cup-check-1">✓</div>
+                    </div>
+                    <div class="cup-item" onclick="window.app.toggleCup(2)">
+                        <div class="cup-art" id="cup-2"></div>
+                        <p class="affirmation">You are worthy and lovable!</p>
+                        <div class="cup-check" id="cup-check-2">✓</div>
+                    </div>
+                    <div class="cup-item" onclick="window.app.toggleCup(3)">
+                        <div class="cup-art" id="cup-3"></div>
+                        <p class="affirmation">It's okay to ask for help!</p>
+                        <div class="cup-check" id="cup-check-3">✓</div>
+                    </div>
+                    <div class="cup-item" onclick="window.app.toggleCup(4)">
+                        <div class="cup-art" id="cup-4"></div>
+                        <p class="affirmation">You are allowed to take up space!</p>
+                        <div class="cup-check" id="cup-check-4">✓</div>
+                    </div>
+                    <div class="cup-item" onclick="window.app.toggleCup(5)">
+                        <div class="cup-art" id="cup-5"></div>
+                        <p class="affirmation">Your feelings matter.</p>
+                        <div class="cup-check" id="cup-check-5">✓</div>
+                    </div>
+                    <div class="cup-item" onclick="window.app.toggleCup(6)">
+                        <div class="cup-art" id="cup-6"></div>
+                        <p class="affirmation">You are strong enough to make your own decisions.</p>
+                        <div class="cup-check" id="cup-check-6">✓</div>
+                    </div>
+                </div>
+                <div class="screen-footer bottom-sticky">
+                    <button class="btn btn-golden btn-full" onclick="window.app.nextScreen()">Done ✓</button>
+                </div>
+            </section>
+
+            <!-- Screen 6: Completion -->
+            <section id="screen-6" class="screen">
+                <div class="completion-content">
+                    <h2 class="title-huge text-brown">You showed up today 🌱</h2>
+                    <p class="body-text text-brown">Small steps matter. Keep going.</p>
+                    <p class="seeds-added">+20 seeds added 🌿</p>
+
+                    <div class="completion-animation-container">
+                        <div class="puppy-sprout" id="puppy-sprout-art"></div>
+                        <div class="seed-jar" id="seed-jar-art"></div>
+                        <!-- Seeds falling will be JS/CSS driven -->
+                    </div>
+                </div>
+                <div class="screen-footer bottom-sticky">
+                    <button class="btn btn-golden btn-full" onclick="window.app.goToIsland()">Back to your island
+                        🌴</button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Right Sidebar (Desktop Only) -->
+
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/svgs.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
