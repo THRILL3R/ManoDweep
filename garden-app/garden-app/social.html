@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understanding Social Life — ManoDweep</title>
+    <meta name="description" content="A peaceful night garden to visualise your relationships and reflect on emotional closeness."/>
+    <link rel="stylesheet" href="css/social.css" />
+</head>
+<body>
+
+<!-- ── BACKGROUND ── -->
+<div class="s-sky"></div>
+<div class="s-stars"></div>
+<div class="s-moon"></div>
+<div class="s-lights">
+    <div class="s-wire"></div>
+    <div class="s-bulb"></div>
+    <div class="s-bulb"></div>
+    <div class="s-bulb"></div>
+    <div class="s-bulb"></div>
+</div>
+<div class="s-bushes">
+    <div class="s-bush"></div>
+    <div class="s-bush"></div>
+    <div class="s-bush"></div>
+    <div class="s-bush"></div>
+    <div class="s-bush"></div>
+</div>
+<div class="s-ground"></div>
+<div class="s-lantern"></div>
+
+<!-- ════════════════════════════════════════
+     SCREEN 1 — SOCIAL GARDEN
+════════════════════════════════════════ -->
+<section id="screen-garden" class="social-screen">
+    <div class="garden-header">
+        <h1>🌙 Understanding Social Life</h1>
+        <p>Everyone has a special place in your life.</p>
+    </div>
+
+    <div class="garden-wrap">
+        <svg id="garden-svg" viewBox="0 0 540 540" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="innerGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#f472b6" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#f472b6" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="midGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#facc15" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#facc15" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="outerGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#4ade80" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#4ade80" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+            </defs>
+
+            <!-- Garden floor -->
+            <ellipse cx="270" cy="400" rx="240" ry="60" fill="rgba(21,128,61,0.15)"/>
+
+            <!-- Ring glow fills -->
+            <circle cx="270" cy="270" r="240" fill="url(#outerGlow)" class="ring-glow"/>
+            <circle cx="270" cy="270" r="170" fill="url(#midGlow)" class="ring-glow"/>
+            <circle cx="270" cy="270" r="100" fill="url(#innerGlow)" class="ring-glow"/>
+
+            <!-- Outer ring -->
+            <circle cx="270" cy="270" r="235" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.6"/>
+            <!-- Middle ring -->
+            <circle cx="270" cy="270" r="165" fill="none" stroke="#facc15" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.6"/>
+            <!-- Inner ring -->
+            <circle cx="270" cy="270" r="95" fill="none" stroke="#f472b6" stroke-width="2" stroke-dasharray="6 5" opacity="0.7"/>
+
+            <!-- Ground path stones -->
+            <ellipse cx="270" cy="360" rx="30" ry="10" fill="rgba(255,255,255,0.05)"/>
+            <ellipse cx="230" cy="345" rx="18" ry="7" fill="rgba(255,255,255,0.04)"/>
+            <ellipse cx="310" cy="345" rx="18" ry="7" fill="rgba(255,255,255,0.04)"/>
+
+            <!-- Dog -->
+            <g transform="translate(295,275)" opacity="0.9">
+                <!-- Body -->
+                <ellipse cx="0" cy="8" rx="14" ry="10" fill="#d97706"/>
+                <!-- Head -->
+                <circle cx="0" cy="-6" r="11" fill="#f59e0b"/>
+                <!-- Ears -->
+                <ellipse cx="-9" cy="-10" rx="5" ry="8" fill="#d97706" transform="rotate(-15 -9 -10)"/>
+                <ellipse cx="9" cy="-10" rx="5" ry="8" fill="#d97706" transform="rotate(15 9 -10)"/>
+                <!-- Eyes -->
+                <circle cx="-4" cy="-7" r="2" fill="#1a1a2e"/>
+                <circle cx="4" cy="-7" r="2" fill="#1a1a2e"/>
+                <circle cx="-3" cy="-8" r="0.8" fill="white"/>
+                <circle cx="5" cy="-8" r="0.8" fill="white"/>
+                <!-- Nose -->
+                <ellipse cx="0" cy="-3" rx="2.5" ry="1.5" fill="#1a1a2e"/>
+                <!-- Tail -->
+                <path d="M14 4 Q22 -2 20 8" fill="none" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+            </g>
+
+            <!-- Me center -->
+            <circle cx="270" cy="270" r="28" fill="#1e40af" opacity="0.9"/>
+            <circle cx="270" cy="270" r="28" fill="none" stroke="white" stroke-width="2"/>
+            <!-- Person silhouette -->
+            <circle cx="270" cy="260" r="9" fill="white" opacity="0.9"/>
+            <path d="M255 285 Q255 272 270 272 Q285 272 285 285" fill="white" opacity="0.9"/>
+            <!-- Me label -->
+            <text x="270" y="307" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.8)" font-family="Outfit,sans-serif" font-weight="600">Me</text>
+
+            <!-- People nodes rendered by JS -->
+        </svg>
+    </div>
+
+    <div class="garden-footer">
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#f9a8d4"></div> Close to me</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#fde68a"></div> Somewhat close</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#86efac"></div> Farther away</div>
+        </div>
+        <div class="garden-actions">
+            <button class="btn-list" onclick="showScreen('list'); renderList()">
+                👥 People List
+            </button>
+            <button class="btn-add" onclick="showAddPerson()" title="Add person">+</button>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SCREEN 2 — PERSON DETAIL
+════════════════════════════════════════ -->
+<section id="screen-detail" class="social-screen">
+    <div class="s-topbar">
+        <button class="s-back" onclick="showScreen('garden')">←</button>
+        <span class="s-title">About this person</span>
+        <button class="s-back" onclick="showScreen('guide')" title="About circles" style="margin-left:auto">ℹ</button>
+    </div>
+
+    <div class="detail-card">
+        <div class="detail-top">
+            <div class="detail-avatar-big" id="detail-avatar">A</div>
+            <div class="detail-name-block">
+                <h2 id="detail-name">Name</h2>
+                <span class="detail-chip" id="detail-label">Friend</span>
+                <div class="detail-last" id="detail-last">Last connected...</div>
+            </div>
+        </div>
+
+        <!-- Closeness -->
+        <div class="detail-section">
+            <label>Closeness</label>
+            <p class="hint">Move closer or farther</p>
+            <div class="plant-wrap"><span id="plant-visual">🌿</span></div>
+            <div class="closeness-cur" id="closeness-label">Somewhat close</div>
+            <div class="slider-row">
+                <span>Farther</span>
+                <input type="range" min="0" max="100" value="50"
+                       id="closeness-slider" class="closeness-range"/>
+                <span>Closer</span>
+            </div>
+        </div>
+
+        <!-- Frequency -->
+        <div class="detail-section">
+            <label>How often do you connect?</label>
+            <div class="freq-row">
+                <button class="freq-btn" data-freq="daily">Daily</button>
+                <button class="freq-btn active" data-freq="weekly">Weekly</button>
+                <button class="freq-btn" data-freq="monthly">Monthly</button>
+                <button class="freq-btn" data-freq="rarely">Rarely</button>
+            </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="detail-section">
+            <label>Notes (optional)</label>
+            <textarea class="detail-textarea" id="detail-notes"
+                placeholder="Something you appreciate..."></textarea>
+        </div>
+
+        <button class="btn-save" onclick="savePersonDetail()">Save Changes</button>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SCREEN 3 — PEOPLE LIST
+════════════════════════════════════════ -->
+<section id="screen-list" class="social-screen">
+    <div class="s-topbar">
+        <button class="s-back" onclick="showScreen('garden')">←</button>
+        <span class="s-title">People in your life</span>
+    </div>
+
+    <div class="list-container">
+        <div class="filter-row">
+            <button class="filter-pill active" data-filter="all"    onclick="renderList('all')">All</button>
+            <button class="filter-pill"        data-filter="close"   onclick="renderList('close')">Close</button>
+            <button class="filter-pill"        data-filter="somewhat" onclick="renderList('somewhat')">Somewhat Close</button>
+            <button class="filter-pill"        data-filter="far"     onclick="renderList('far')">Far</button>
+        </div>
+
+        <div id="people-list"></div>
+
+        <button class="btn-add-person" onclick="showAddPerson()">+ Add Person</button>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SCREEN 4 — ABOUT YOUR CIRCLES
+════════════════════════════════════════ -->
+<section id="screen-guide" class="social-screen">
+    <div class="s-topbar">
+        <button class="s-back" onclick="showScreen('garden')">←</button>
+        <span class="s-title">About your circles</span>
+    </div>
+
+    <div class="guide-card">
+        <h2>Your relationship circles 🌙</h2>
+        <p>Everyone holds a different place in your heart. That's natural.</p>
+
+        <div class="guide-row pink">
+            <div class="guide-icon">🩷</div>
+            <div>
+                <h4>Close to me</h4>
+                <p>The inner circle includes people who are very close to you — those you feel safe with and deeply connected to.</p>
+            </div>
+        </div>
+        <div class="guide-row yellow">
+            <div class="guide-icon">💛</div>
+            <div>
+                <h4>Somewhat close</h4>
+                <p>People you connect with regularly and care about — friends, family members, and colleagues you appreciate.</p>
+            </div>
+        </div>
+        <div class="guide-row green">
+            <div class="guide-icon">💚</div>
+            <div>
+                <h4>Farther away</h4>
+                <p>People you know or meet occasionally. Distance doesn't mean less love — relationships change, and that's okay.</p>
+            </div>
+        </div>
+
+        <div class="guide-dog">
+            <span>🐶</span>
+            You can move people and update how often you connect with them, anytime you like.
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     ADD PERSON MODAL
+════════════════════════════════════════ -->
+<div id="add-modal" class="add-modal" onclick="if(event.target===this)hideAddPerson()">
+    <div class="add-modal-card">
+        <h3>Add someone 💫</h3>
+        <form id="add-form" onsubmit="return false">
+            <div class="add-field">
+                <label>Name *</label>
+                <input type="text" id="add-name" placeholder="Their name" autocomplete="off"/>
+            </div>
+            <div class="add-field">
+                <label>Relationship label</label>
+                <input type="text" id="add-label" placeholder="e.g. Best Friend, Brother, Cousin"/>
+            </div>
+            <div class="add-field">
+                <label>Closeness</label>
+                <select id="add-closeness">
+                    <option value="1">Close to me (Inner)</option>
+                    <option value="2" selected>Somewhat close (Middle)</option>
+                    <option value="3">Farther away (Outer)</option>
+                </select>
+            </div>
+            <div class="add-field">
+                <label>How often do you connect?</label>
+                <select id="add-frequency">
+                    <option value="daily">Daily</option>
+                    <option value="weekly" selected>Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="rarely">Rarely</option>
+                </select>
+            </div>
+            <div class="add-field">
+                <label>Avatar colour</label>
+                <div class="color-row">
+                    <div id="add-color-preview"></div>
+                    <div class="color-swatch" data-color="#f9a8d4" style="background:#f9a8d4"></div>
+                    <div class="color-swatch" data-color="#86efac" style="background:#86efac"></div>
+                    <div class="color-swatch" data-color="#fdba74" style="background:#fdba74"></div>
+                    <div class="color-swatch" data-color="#a78bfa" style="background:#a78bfa"></div>
+                    <div class="color-swatch" data-color="#67e8f9" style="background:#67e8f9"></div>
+                    <div class="color-swatch" data-color="#fde68a" style="background:#fde68a"></div>
+                    <div class="color-swatch" data-color="#fca5a5" style="background:#fca5a5"></div>
+                    <div class="color-swatch" data-color="#93c5fd" style="background:#93c5fd"></div>
+                </div>
+            </div>
+        </form>
+        <div class="add-actions">
+            <button class="btn-cancel" onclick="hideAddPerson()">Cancel</button>
+            <button class="btn-confirm" onclick="saveNewPerson()">Add Person ✨</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/social.js"></script>
+</body>
+</html>
