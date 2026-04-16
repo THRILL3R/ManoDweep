@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+enum AccountStatus {
+  ACTIVE
+  DEACTIVATED
+}
+
+model User {
+  id               String        @id @default(cuid())
+  name             String
+  email            String        @unique
+  password         String?                         // nullable — Google Sign-In users have no password
+  phone            String?                         // nullable — required at registration but editable
+  googleId         String?       @unique            // Google OAuth sub
+  role             Role          @default(USER)
+  accountStatus    AccountStatus @default(ACTIVE)  // Admin can deactivate
+  dob              DateTime
+  consentAt        DateTime
+  gender           String        @default("boy")    // "boy" | "girl" — selects island art variant
+  dogName          String        @default("Buddy")
+  profilePicture   String?                         // file reference, circle-cropped on upload
+  aboutYourself    String?                         // optional free text
+  whatILove        String?                         // optional free text
+  whatMakesHappy   String?                         // optional free text
+  platformSuggestion String?                       // optional, shown to Admin as read-only
+  coinBalance      Int           @default(0)        // floor = 0, never negative
+  firstLoginAt     DateTime?                        // set on first login — Cave lock uses this
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  gardenEntries     GardenEntry[]
+  lighthouseEntries LighthouseEntry[]
+
+  @@map("users")
+}
+
+model LighthouseEntry {
+  id            String   @id @default(cuid())
+  userId        String
+
+  // Screen 3.1
+  emotion       String?
+
+  // Screen 3.3
+  feelingColor  String?
+  bodyLocation  String?
+  intensity     Int?
+  texture       String?
+
+  // Screen 3.4 / 3.4.1
+  stayWithFeeling Boolean?
+  stayActivity    String?
+
+  // Screen 3.5
+  divingText    String?
+  divingTags    Json?    // [string]
+
+  // Screen 3.6
+  controlCheck  String?  // "yes" | "no" | "not-sure"
+  controlText   String?
+
+  // Screen 3.7
+  responses     Json?    // [string]
+
+  // Screen 3.8
+  closure       String?  // "settled" | "processing" | "support"
+
+  coinsAwarded  Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("lighthouse_entries")
+}
+
+model GardenEntry {
+  id          String   @id @default(cuid())
+  userId      String
+  date        DateTime @db.Date            // one row per user per calendar day
+  session     String   @default("morning") // "morning" | "night"
+
+  // Screen 2 — Gratitude
+  gratitude   Json?    // [{name: string}] x3
+
+  // Screen 3 — Intentions (morning only)
+  intentions  Json?    // [boolean, boolean, boolean]
+
+  // Screen 4 — Daily Goals (morning only)
+  goals       Json?    // {personal:[{text,checked}], social:[], wellness:[], work:[], study:[], hobbies:[]}
+
+  // Screen-evening — Evening Reflection (night only)
+  evening     Json?    // {myself:[{text,checked}], people:[], wellbeing:[], work:[], study:[], hobbies:[]}
+
+  // Screen 5 — Take What You Need
+  cups        Json?    // [1,3,5] — selected cup ids
+
+  completed   Boolean  @default(false)
+  coinsAwarded Boolean @default(false)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date, session])
+  @@map("garden_entries")
+}
