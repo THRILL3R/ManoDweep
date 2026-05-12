@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  /* ManoDweep day palette — warm sandy tones */
+  --md-bg: #fdf8f0;
+  --md-surface: #ffffff;
+  --md-primary: #4a7c59;
+  --md-primary-hover: #3a6347;
+  --md-accent: #c97d4e;
+  --md-text: #2c1f14;
+  --md-muted: #8a7a6a;
+  --md-border: #e8ddd0;
+  --md-error: #c0392b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--md-bg);
+  color: var(--md-text);
+  font-family: "Inter", system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* Utility: island background overlay */
+.auth-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(74, 124, 89, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(201, 125, 78, 0.1) 0%, transparent 60%),
+    var(--md-bg);
+  min-height: 100vh;
+}
