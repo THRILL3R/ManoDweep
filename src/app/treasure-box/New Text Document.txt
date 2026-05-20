@@ -1,0 +1,301 @@
+function EmoChar({ id, sel, col }: { id: string; sel: boolean; col: string }) {
+  const chars: Record<string, React.ReactNode> = {
+    Happy: (
+      <svg viewBox="0 0 60 70" width="54" height="63" suppressHydrationWarning>
+        <circle cx="30" cy="22" r="20" fill="#F9A825" />
+        <circle cx="30" cy="22" r="20" fill="url(#hSunLH)" opacity="0.3" />
+        {[0, 45, 90, 135, 180, 225, 270, 315].map(a => <line key={a} x1={30 + 22 * Math.cos(a * Math.PI / 180)} y1={22 + 22 * Math.sin(a * Math.PI / 180)} x2={30 + 28 * Math.cos(a * Math.PI / 180)} y2={22 + 28 * Math.sin(a * Math.PI / 180)} stroke="#F9A825" strokeWidth="2.5" strokeLinecap="round" />)}
+        <circle cx="23" cy="19" r="2.5" fill="#5D3A00" /><circle cx="37" cy="19" r="2.5" fill="#5D3A00" />
+        <path d="M22 27 Q30 34 38 27" fill="none" stroke="#5D3A00" strokeWidth="2" strokeLinecap="round" />
+        <defs><radialGradient id="hSunLH"><stop offset="0%" stopColor="#fff" /><stop offset="100%" stopColor="#F9A825" stopOpacity="0" /></radialGradient></defs>
+      </svg>
+    ),
+    Angry: (
+      <svg viewBox="0 0 60 70" width="54" height="63">
+        <ellipse cx="30" cy="26" rx="20" ry="22" fill="#E53935" />
+        <path d="M8 10 Q14 5 20 12" fill="none" stroke="#B71C1C" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M40 12 Q46 5 52 10" fill="none" stroke="#B71C1C" strokeWidth="2.5" strokeLinecap="round" />
+        <circle cx="22" cy="23" r="3" fill="#4A0000" /><circle cx="38" cy="23" r="3" fill="#4A0000" />
+        <path d="M22 34 Q30 29 38 34" fill="none" stroke="#4A0000" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M18 17 L26 21M34 21 L42 17" stroke="#B71C1C" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+    Calm: (
+      <svg viewBox="0 0 60 70" width="54" height="63">
+        <ellipse cx="30" cy="26" rx="20" ry="22" fill="#4DB6AC" />
+        <circle cx="23" cy="24" r="2.5" fill="#00332E" /><circle cx="37" cy="24" r="2.5" fill="#00332E" />
+        <path d="M23 33 Q30 37 37 33" fill="none" stroke="#00332E" strokeWidth="2" strokeLinecap="round" />
+        <path d="M15 18 Q22 14 26 20M34 20 Q38 14 45 18" fill="none" stroke="#26A69A" strokeWidth="1.5" />
+        {[...Array(5)].map((_, i) => <circle key={i} cx={14 + i * 8} cy={52 + Math.sin(i) * 3} r="3" fill="#80CBC4" opacity="0.7" />)}
+      </svg>
+    ),
+    Sad: (
+      <svg viewBox="0 0 60 70" width="54" height="63">
+        <ellipse cx="30" cy="26" rx="19" ry="22" fill="#5C8DB8" />
+        <circle cx="23" cy="22" r="2.5" fill="#1A3A5A" /><circle cx="37" cy="22" r="2.5" fill="#1A3A5A" />
+        <path d="M22 33 Q30 29 38 33" fill="none" stroke="#1A3A5A" strokeWidth="2" strokeLinecap="round" />
+        <ellipse cx="22" cy="22" rx="4" ry="5" fill="#90CAF9" opacity="0.4" />
+        <ellipse cx="38" cy="22" rx="4" ry="5" fill="#90CAF9" opacity="0.4" />
+        <path d="M24 26 Q24 36 22 40M36 26 Q36 36 38 40" stroke="#90CAF9" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      </svg>
+    ),
+    Worried: (
+      <svg viewBox="0 0 60 70" width="54" height="63">
+        <ellipse cx="30" cy="26" rx="20" ry="21" fill="#7B68C8" />
+        <circle cx="23" cy="23" r="2.5" fill="#1A0050" /><circle cx="37" cy="23" r="2.5" fill="#1A0050" />
+        <path d="M22 33 Q30 30 38 33" fill="none" stroke="#1A0050" strokeWidth="2" strokeLinecap="round" />
+        <path d="M19 16 Q22 12 26 16M34 16 Q38 12 41 16" fill="none" stroke="#5548A0" strokeWidth="2" strokeLinecap="round" />
+        <path d="M26 16 Q30 14 34 16" stroke="#9C8FE0" strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
+    Silly: (
+      <svg viewBox="0 0 60 70" width="54" height="63">
+        <ellipse cx="30" cy="26" rx="20" ry="21" fill="#BA68C8" />
+        <circle cx="23" cy="21" r="3" fill="#4A0060" /><circle cx="37" cy="21" r="3" fill="#4A0060" />
+        <circle cx="24" cy="20" r="1" fill="#fff" /><circle cx="38" cy="20" r="1" fill="#fff" />
+        <path d="M20 30 Q25 38 30 30 Q35 38 40 30" fill="#CE93D8" stroke="#4A0060" strokeWidth="1.5" />
+        <circle cx="22" cy="27" r="5" fill="#F48FB1" opacity="0.7" />
+        <circle cx="38" cy="27" r="5" fill="#F48FB1" opacity="0.7" />
+        <circle cx="30" cy="38" r="3" fill="#4A0060" />
+      </svg>
+    ),
+    Tired: (
+      <svg viewBox="0 0 60 70" width="54" height="63">
+        <ellipse cx="30" cy="26" rx="19" ry="22" fill="#607D8B" />
+        <path d="M19 21 Q23 19 27 21" fill="none" stroke="#263238" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M33 21 Q37 19 41 21" fill="none" stroke="#263238" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M23 33 Q30 30 37 33" fill="none" stroke="#263238" strokeWidth="2" strokeLinecap="round" />
+        <path d="M14 12 Q18 8 20 14M40 14 Q42 8 46 12" stroke="#546E7A" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <circle cx="30" cy="52" r="8" fill="#78909C" opacity="0.6" />
+      </svg>
+    ),
+    Confused: (
+      <svg viewBox="0 0 60 70" width="54" height="63">
+        <path d="M30 6 L54 24 L44 52 L16 52 L6 24Z" fill="#9C7B3A" />
+        <path d="M30 6 L54 24 L44 52 L16 52 L6 24Z" fill="url(#confGradLH)" opacity="0.4" />
+        <circle cx="23" cy="28" r="2.5" fill="#3E2000" /><circle cx="37" cy="28" r="2.5" fill="#3E2000" />
+        <path d="M24 38 Q30 35 36 38" fill="none" stroke="#3E2000" strokeWidth="2" strokeLinecap="round" />
+        <path d="M30 10 Q36 6 38 12" fill="none" stroke="#C9A050" strokeWidth="2" strokeLinecap="round" />
+        <text x="33" y="13" fontSize="8" fill="#C9A050" fontWeight="bold">?</text>
+        <defs><linearGradient id="confGradLH" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#fff" /><stop offset="100%" stopColor="#9C7B3A" stopOpacity="0" /></linearGradient></defs>
+      </svg>
+    ),
+    Anxious: (
+      <svg viewBox="0 0 60 70" width="54" height="63" suppressHydrationWarning>
+        <ellipse cx="30" cy="26" rx="20" ry="21" fill="#E8883A" />
+        {[...Array(8)].map((_, i) => { const a = i * 45 * Math.PI / 180; return <line key={i} x1={30 + 22 * Math.cos(a)} y1={26 + 22 * Math.sin(a)} x2={30 + 27 * Math.cos(a)} y2={26 + 27 * Math.sin(a)} stroke="#E8883A" strokeWidth="3" strokeLinecap="round" /> })}
+        <circle cx="23" cy="23" r="3" fill="#7A3000" /><circle cx="37" cy="23" r="3" fill="#7A3000" />
+        <path d="M23 33 Q27 31 30 33 Q33 31 37 33" fill="none" stroke="#7A3000" strokeWidth="2" strokeLinecap="round" />
+        <path d="M24 17 L28 21M32 21 L36 17" stroke="#C0601A" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+    Excited: (
+      <svg viewBox="0 0 60 70" width="54" height="63" suppressHydrationWarning>
+        <circle cx="30" cy="24" r="20" fill="#FFB300" />
+        {[0, 36, 72, 108, 144, 180, 216, 252, 288, 324].map(a => <line key={a} x1={30 + 22 * Math.cos(a * Math.PI / 180)} y1={24 + 22 * Math.sin(a * Math.PI / 180)} x2={30 + 29 * Math.cos(a * Math.PI / 180)} y2={24 + 29 * Math.sin(a * Math.PI / 180)} stroke="#FF8F00" strokeWidth="2.5" strokeLinecap="round" />)}
+        <circle cx="23" cy="20" r="3" fill="#5D3A00" /><circle cx="37" cy="20" r="3" fill="#5D3A00" />
+        <circle cx="24" cy="19" r="1.2" fill="#fff" /><circle cx="38" cy="19" r="1.2" fill="#fff" />
+        <path d="M20 28 Q25 36 30 28 Q35 36 40 28" fill="#FF8F00" stroke="#5D3A00" strokeWidth="1.5" />
+        <circle cx="30" cy="31" r="2" fill="#5D3A00" />
+      </svg>
+    ),
+  };
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, cursor: "pointer", userSelect: "none", padding: "6px 4px 8px", borderRadius: 14, background: sel ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.04)", border: sel ? `2px solid ${col}` : "2px solid transparent", transition: "all 0.15s", transform: sel ? "scale(1.08)" : "scale(1)", boxShadow: sel ? `0 0 16px ${col}55` : "none" }}>
+      {chars[id]}
+      <span style={{ fontSize: 10, fontWeight: 700, fontFamily: "var(--font-baloo)", color: sel ? col : "#C4B5FD", textAlign: "center", lineHeight: 1 }}>{id}</span>
+      <div style={{ width: 16, height: 16, borderRadius: "50%", border: `2px solid ${sel ? col : "rgba(180,160,220,0.5)"}`, background: sel ? col : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.15s" }}>
+        {sel && <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#fff" }} />}
+      </div>
+    </div>
+  );
+}
+
+function BodySilhouette({ selected, onSelect }: { selected: string | null; onSelect: (s: string) => void }) {
+  const parts = [
+    { id: "Head", label: "Head" },
+    { id: "Chest", label: "Chest" },
+    { id: "Stomach", label: "Stomach" },
+    { id: "Arms", label: "Arms" },
+    { id: "Legs", label: "Legs" },
+  ];
+  return (
+    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+      <svg viewBox="0 0 70 240" width="60" height="205" style={{ flexShrink: 0 }}>
+        <ellipse cx="35" cy="26" rx="16" ry="18" fill={selected === "Head" ? "#8B5CF6" : "#4B3080"} opacity={selected === "Head" ? 1 : 0.7} />
+        <rect x="30" y="42" width="10" height="10" rx="4" fill={selected === "Chest" ? "#8B5CF6" : "#4B3080"} opacity="0.7" />
+        <rect x="20" y="52" width="30" height="55" rx="8" fill={selected === "Chest" || selected === "Stomach" ? "#8B5CF6" : "#4B3080"} opacity={selected === "Chest" || selected === "Stomach" ? 1 : 0.7} />
+        <rect x="4" y="55" width="14" height="44" rx="7" fill={selected === "Arms" ? "#8B5CF6" : "#4B3080"} opacity={selected === "Arms" ? 1 : 0.7} />
+        <rect x="52" y="55" width="14" height="44" rx="7" fill={selected === "Arms" ? "#8B5CF6" : "#4B3080"} opacity={selected === "Arms" ? 1 : 0.7} />
+        <rect x="20" y="108" width="13" height="65" rx="7" fill={selected === "Legs" ? "#8B5CF6" : "#4B3080"} opacity={selected === "Legs" ? 1 : 0.7} />
+        <rect x="37" y="108" width="13" height="65" rx="7" fill={selected === "Legs" ? "#8B5CF6" : "#4B3080"} opacity={selected === "Legs" ? 1 : 0.7} />
+        {selected === "Head" && <circle cx="35" cy="26" r="6" fill="#C4B5FD" opacity="0.7" />}
+        {selected === "Chest" && <circle cx="35" cy="68" r="6" fill="#C4B5FD" opacity="0.7" />}
+        {selected === "Stomach" && <circle cx="35" cy="95" r="6" fill="#C4B5FD" opacity="0.7" />}
+        {selected === "Arms" && <><circle cx="11" cy="77" r="5" fill="#C4B5FD" opacity="0.7" /><circle cx="59" cy="77" r="5" fill="#C4B5FD" opacity="0.7" /></>}
+        {selected === "Legs" && <><circle cx="26" cy="140" r="5" fill="#C4B5FD" opacity="0.7" /><circle cx="44" cy="140" r="5" fill="#C4B5FD" opacity="0.7" /></>}
+      </svg>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {parts.map(p => (
+          <div key={p.id} onClick={() => onSelect(p.id)} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", userSelect: "none" }}>
+            <div style={{ width: 16, height: 16, borderRadius: "50%", border: `2px solid ${selected === p.id ? "#A78BFA" : "rgba(167,139,250,0.4)"}`, background: selected === p.id ? "#7C3AED" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all 0.15s" }}>
+              {selected === p.id && <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#fff" }} />}
+            </div>
+            <span style={{ fontSize: 13, color: selected === p.id ? "#E9D5FF" : "#C4B5FD", fontWeight: selected === p.id ? 700 : 500 }}>{p.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Thermometer({ level, onSelect }: { level: number | null; onSelect: (n: number) => void }) {
+  const getCol = (n: number) => {
+    const t = (n - 1) / 9;
+    if (t < 0.5) { const r = Math.round(t * 2 * 255); return `rgb(${r},200,80)`; }
+    else { const t2 = (t - 0.5) * 2; return `rgb(255,${Math.round(200 - t2 * 160)},${Math.round(80 - t2 * 70)})`; }
+  };
+  const filled = level ?? 0;
+  const updateLevel = (e: React.PointerEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const y = e.clientY - rect.top;
+    let n = Math.round((164 - y) / 16);
+    if (n < 1) n = 1; if (n > 10) n = 10;
+    if (n !== level) onSelect(n);
+  };
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => { e.currentTarget.setPointerCapture(e.pointerId); updateLevel(e); };
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => { if (e.currentTarget.hasPointerCapture(e.pointerId)) updateLevel(e); };
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => { try { e.currentTarget.releasePointerCapture(e.pointerId); } catch { } };
+  return (
+    <div style={{ display: "flex", alignItems: "flex-end", gap: 10 }}>
+      <div style={{ position: "relative", width: 28, height: 200, flexShrink: 0, cursor: "pointer", touchAction: "none" }}
+        onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={handlePointerUp} onPointerCancel={handlePointerUp}>
+        <div style={{ position: "absolute", bottom: 14, left: 4, width: 20, borderRadius: "10px 10px 0 0", background: "rgba(255,255,255,0.08)", border: "1.5px solid rgba(200,180,255,0.3)", height: 175, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: 14, left: 6, width: 16, borderRadius: "8px 8px 0 0", background: `linear-gradient(to top,#4CAF50,#FFEB3B 50%,#F44336)`, height: filled > 0 ? `${(filled / 10) * 160}px` : "0px", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: 26, height: 26, borderRadius: "50%", background: filled > 0 ? getCol(filled) : "#4B3080", border: "2px solid rgba(200,180,255,0.4)", pointerEvents: "none" }} />
+        {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((n, i) => (
+          <div key={n} style={{ position: "absolute", right: 0, top: 4 + i * 16, display: "flex", alignItems: "center", gap: 2, pointerEvents: "none" }}>
+            <div style={{ width: 6, height: 1.5, background: "rgba(200,180,255,0.3)" }} />
+          </div>
+        ))}
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map(n => (
+          <div key={n} onClick={() => onSelect(level === n ? 0 : n)}
+            style={{
+              width: 28, height: 16, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", borderRadius: 4,
+              background: level !== null && n <= level ? getCol(n) : "transparent",
+              color: level !== null && n <= level ? "#1a0030" : "rgba(200,180,255,0.6)",
+              fontSize: 10, fontWeight: 700, fontFamily: "var(--font-baloo)", transition: "all 0.15s",
+              border: level === n ? "1.5px solid #fff" : "1px solid transparent"
+            }}>
+            {n}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   SCREEN — FEELINGS CHECK IN
+═══════════════════════════════════════════════ */
+function ScreenFeelingCheckIn({ onNext, onBack, onSOS, lhBg }: { onNext: () => void; onBack: () => void; onSOS: () => void; lhBg?: string }) {
+  const [emotion, setEmotion] = useState<string | null>(null);
+  const [bodyPart, setBodyPart] = useState<string | null>(null);
+  const [feelType, setFeelType] = useState<string | null>(null);
+  const [level, setLevel] = useState<number | null>(null);
+  const [calming, setCalming] = useState<string | null>(null);
+  const showCalming = level !== null && level >= 4;
+  const canDone = emotion !== null;
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 10, fontFamily: "var(--font-nunito)", overflowY: "auto" }}>
+      <img src={lhBg} alt="" style={{ position: "fixed", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 50%", zIndex: 0 }} />
+      <style>{`
+        .fci-wrap{position:relative;z-index:2;width:100%;max-width:660px;margin:16px auto;min-height:calc(100% - 32px);display:flex;flex-direction:column;align-items:center;padding:24px 20px 36px;background:rgba(8,4,28,0.7);backdrop-filter:blur(10px);border-radius:28px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 12px 40px rgba(0,0,0,0.6);}
+        .fci-emo-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;width:100%;max-width:600px;}
+        .fci-mid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:100%;max-width:600px;}
+        @media(max-width:480px){.fci-mid{grid-template-columns:1fr 1fr;}}
+        .fci-panel{background:rgba(22,10,50,0.88);border:1.5px solid rgba(139,92,246,0.3);border-radius:18px;padding:14px 12px;backdrop-filter:blur(8px);}
+        .fci-panel-title{font-size:11px;font-weight:800;color:#A78BFA;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 10px;font-family:var(--font-baloo);text-align:center;}
+        .fci-radio-row{display:flex;align-items:center;gap:8px;cursor:pointer;margin-bottom:8px;user-select:none;}
+        .fci-radio{width:15px;height:15px;border-radius:50%;border:2px solid rgba(167,139,250,0.5);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+        .fci-radio.on{border-color:#8B5CF6;background:#7C3AED;}
+        .fci-calming-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;width:100%;max-width:600px;}
+        @media(max-width:460px){.fci-calming-row{grid-template-columns:repeat(3,1fr);}}
+        .fci-calming-tile{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 6px 10px;border-radius:16px;cursor:pointer;border:2px solid transparent;background:rgba(22,10,50,0.85);transition:all 0.15s;user-select:none;text-align:center;}
+        .fci-calming-tile.sel{border-color:#8B5CF6;background:rgba(60,20,120,0.85);box-shadow:0 2px 14px rgba(139,92,246,0.35);}
+        .fci-done-btn{width:100%;max-width:600px;padding:14px;border-radius:18px;border:none;background:linear-gradient(135deg,#6D28D9,#A855F7);color:#fff;font-size:16px;font-weight:800;font-family:var(--font-baloo);cursor:pointer;box-shadow:0 4px 22px rgba(109,40,217,0.55);letter-spacing:0.04em;}
+        .fci-done-btn:disabled{opacity:0.35;cursor:not-allowed;}
+      `}</style>
+      <div className="fci-wrap">
+        {/* Header */}
+        <div style={{ width: "100%", maxWidth: 600, display: "flex", alignItems: "center", marginBottom: 10, gap: 10 }}>
+          <button onClick={onBack} style={{ width: 34, height: 34, borderRadius: "50%", background: "rgba(22,10,50,0.85)", border: "1.5px solid rgba(139,92,246,0.4)", color: "#C4B5FD", fontSize: 18, fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>←</button>
+          <h1 style={{ fontFamily: "var(--font-baloo)", fontSize: "clamp(18px,5vw,26px)", fontWeight: 900, color: "#EDE9FE", margin: 0, letterSpacing: "0.06em", textShadow: "0 0 20px rgba(139,92,246,0.7)" }}>FEELINGS CHECK IN</h1>
+          <button onClick={onSOS} style={{ marginLeft: "auto", padding: "5px 10px", borderRadius: 20, background: "rgba(224,96,80,0.15)", border: "1.5px solid rgba(224,96,80,0.5)", color: "#E07060", fontSize: 11, fontWeight: 900, cursor: "pointer", fontFamily: "var(--font-baloo)", letterSpacing: "0.05em" }}>SOS</button>
+        </div>
+
+        {/* Emotion rows */}
+        {[FEELINGS_EMOTIONS.slice(0, 5), FEELINGS_EMOTIONS.slice(5, 10)].map((row, ri) => (
+          <div key={ri} className="fci-emo-row" style={{ marginBottom: ri === 0 ? 4 : 12 }}>
+            {row.map(em => (
+              <div key={em.label} onClick={() => setEmotion(emotion === em.label ? null : em.label)}>
+                <EmoChar id={em.label} sel={emotion === em.label} col={em.col} />
+              </div>
+            ))}
+          </div>
+        ))}
+
+        {/* Middle 3-column panel */}
+        <div className="fci-mid" style={{ marginBottom: 12 }}>
+          <div className="fci-panel">
+            <p className="fci-panel-title">The feeling is in my</p>
+            <BodySilhouette selected={bodyPart} onSelect={bp => setBodyPart(bodyPart === bp ? null : bp)} />
+          </div>
+          <div className="fci-panel">
+            <p className="fci-panel-title">This feeling feels</p>
+            <div>
+              {FEELING_TYPES.map(ft => (
+                <div key={ft} className="fci-radio-row" onClick={() => setFeelType(feelType === ft ? null : ft)}>
+                  <div className={`fci-radio${feelType === ft ? " on" : ""}`}>
+                    {feelType === ft && <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#fff" }} />}
+                  </div>
+                  <span style={{ fontSize: 12, color: feelType === ft ? "#EDE9FE" : "#C4B5FD", fontWeight: feelType === ft ? 700 : 400 }}>{ft}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="fci-panel">
+            <p className="fci-panel-title">The feeling level is</p>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Thermometer level={level} onSelect={n => setLevel(n === 0 ? null : n)} />
+            </div>
+          </div>
+        </div>
+
+        {/* Calming strategies */}
+        <div style={{ width: "100%", maxWidth: 600, marginBottom: 14, opacity: showCalming ? 1 : 0, pointerEvents: showCalming ? "auto" : "none", transition: "opacity 0.3s ease" }}>
+          <p style={{ textAlign: "center", fontSize: 12, color: "#A78BFA", fontWeight: 700, margin: "0 0 10px" }}>🌿 If you&apos;re level 4 or higher, choose a calming strategy below: 🌿</p>
+          <div className="fci-calming-row">
+            {CALMING_ITEMS.map(c => (
+              <div key={c.label} className={`fci-calming-tile${calming === c.label ? " sel" : ""}`}
+                onClick={() => setCalming(calming === c.label ? null : c.label)}>
+                {c.icon}
+                <span style={{ fontSize: 10, fontWeight: 700, color: calming === c.label ? "#EDE9FE" : "#C4B5FD", fontFamily: "var(--font-baloo)" }}>{c.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <p style={{ fontSize: 11, color: "#7C6AA0", fontStyle: "italic", textAlign: "center", margin: "0 0 14px", maxWidth: 400 }}>
+          It&apos;s okay to feel what you feel. You are not alone. 💜
+        </p>
+        <button className="fci-done-btn" disabled={!canDone} onClick={onNext}>
+          Done ✓
+        </button>
+      </div>
+    </div>
+  );
+}
