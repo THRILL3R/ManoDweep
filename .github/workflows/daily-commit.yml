@@ -23,8 +23,8 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "Sanket"
+          git config user.email "sanket.dekaglgt@gmail.com"
           git add .github/daily-log.txt
           git commit -m "chore: daily update $(date -u '+%Y-%m-%d')"
           git push
