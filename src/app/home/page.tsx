@@ -87,13 +87,13 @@ export default function HomePage() {
   /* ── VIDEO INTRO ─────────────────────────────── */
   if (!videoReady) {
     return (
-      <div style={{ position: "fixed", inset: 0, background: "#000" }}>
+      <div style={{ position: "fixed", inset: 0, background: "#000", overflow: "hidden" }}>
         <video
           key={bgVideoSrc}
           src={bgVideoSrc}
           autoPlay muted playsInline
           onEnded={() => { setVideoFading(true); setTimeout(() => setVideoReady(true), 900); }}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "112%", objectFit: "cover", objectPosition: "center top" }}
         />
         <div style={{
           position: "absolute", inset: 0, background: "#000",
